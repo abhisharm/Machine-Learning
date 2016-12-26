@@ -17,12 +17,13 @@ for iter = 1:num_iters
     %
     tmp = X * theta;
     tmp = y - tmp;
-    tmp_theta = zeros(1, length(theta)); 
-    for k = 1:length(X, 1)
-        tmp_theta(k,:)=tmp; 
+    tmp_theta = zeros(length(tmp),1); 
+    for k = 1:size(X, 2)
+        tmp_theta(:,k)=tmp; 
+    end
     tmp_theta = tmp_theta .* X; 
-    tmp_theta = sum(tmp_theta, 1); 
-    theta = theta + tmp_theta*.(alpha/m); 
+    tmp_theta = sum(tmp_theta, 1)'; 
+    theta = theta + tmp_theta.*(alpha/m); 
     J_history(iter) = computeCostMulti(X, y, theta);
 end
 
